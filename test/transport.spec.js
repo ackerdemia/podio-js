@@ -145,7 +145,7 @@ describe('transport', function() {
       transport.clientSecret = 'abc';
 
       var basicAuth = 'Basic ' +
-                      new Buffer(transport.clientId + ':' +
+                      new Buffer.from(transport.clientId + ':' +
                       transport.clientSecret).toString('base64');
 
       transport._setOptions(options, req);
@@ -371,17 +371,10 @@ describe('transport', function() {
     });
 
     it('should throw an exception if authentication has not been performed before', function(done) {
-      var PodioForbiddenError = function(message, status, url) {
-        this.message = message;
-        this.status = status;
-        this.url = url;
-        this.name = 'PodioForbiddenError';
-      };
-
       auth.isAuthenticated = sinon.stub().returns(false);
 
       transport.request.call(host, 'get', '/test').then(function(){}, function (err) {
-        expect(err).toEqual(new PodioForbiddenError('Authentication has not been performed'));
+        expect(err).toEqual(new PodioErrors.PodioForbiddenError('Authentication has not been performed'));
 
         done();
       });

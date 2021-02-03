@@ -136,15 +136,15 @@ describe('auth', function() {
         authType: 'client',
         clientId: 123
       };
-      
+
       var expectedURL = 'https://podio.com/oauth/authorize?client_id=123&redirect_uri=https%3A%2F%2Fwww.myapp.com%2Foauth&response_type=token';
-      
+
       expect(auth.getAuthorizationURL.call(host, redirectURL)).toBe(expectedURL);
     });
 
     it('should return the correct authorization URL for the server auth', function() {
       var redirectURL = 'https://www.myapp.com/oauth';
-      
+
       var host = {
         apiURL: 'https://podio.com',
         authType: 'server',
@@ -370,7 +370,7 @@ describe('auth', function() {
 
       auth._onAccessTokenAcquired.call(host, responseData, function() {});
 
-      expect(host.authObject).toEqual(oAuthObject);
+      expect(_.isMatch(host.authObject, oAuthObject)).toBe(true);
     });
 
     it('should save an authObject in the session store and provide a callback', function() {
@@ -384,7 +384,7 @@ describe('auth', function() {
       auth._onAccessTokenAcquired.call(host, responseData, function() {});
 
       expect(host.sessionStore.set.calledOnce).toBe(true);
-      expect(host.sessionStore.set.getCall(0).args[0]).toEqual(oAuthObject);
+      expect(_.isMatch(host.sessionStore.set.getCall(0).args[0],oAuthObject)).toBe(true);
       expect(host.sessionStore.set.getCall(0).args[1]).toEqual('client');
       expect(_.isFunction(host.sessionStore.set.getCall(0).args[2])).toBe(true);
     });
