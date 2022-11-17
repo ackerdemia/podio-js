@@ -1,6 +1,6 @@
 {
   "name": "podio-js",
-  "version": "1.6.2",
+  "version": "1.6.3",
   "description": "Podio Platform JavaScript SDK for NodeJS and the browser",
   "main": "lib/index",
   "scripts": {
@@ -28,16 +28,17 @@
   },
   "homepage": "https://github.com/podio/podio-js",
   "devDependencies": {
-    "coveralls": "^3.0.5",
+    "browserify": "17.0.0",
+    "coveralls": "3.1.1",
     "istanbul": "0.4.5",
-    "jasmine": "^3.4.0",
-    "sinon": "1.17.3"
+    "jasmine": "4.5.0",
+    "sinon": "1.17.7"
   },
   "dependencies": {
-    "es6-promise": "3.1.2",
-    "faye": "^1.2.4",
-    "lodash": "^4.17.15",
-    "superagent": "^5.1.0",
-    "urijs": "1.19.6"
+    "es6-promise": "4.2.8",
+    "faye": "1.4.0",
+    "lodash": "4.17.21",
+    "superagent": "5.3.1",
+    "urijs": "1.19.11"
   }
 }
